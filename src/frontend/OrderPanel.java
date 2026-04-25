@@ -3,6 +3,7 @@ package frontend;
 import backend.order.Order;
 import javax.swing.*;
 import java.awt.*;
+import java.util.Queue;
 
 public class OrderPanel extends JPanel {
     private static final DefaultListModel<Order> model = new DefaultListModel<>();
@@ -62,6 +63,14 @@ public class OrderPanel extends JPanel {
         this.add(buttonPane, BorderLayout.SOUTH);
     }
 
+    public static void addOrder(Order order){
+        model.addElement(order);
+    }
+
+    public static void addOrders(Queue<Order> orders){
+        model.addAll(orders);
+    }
+
     // Was Retrieved from stackoverflow at:
     // https://stackoverflow.com/questions/31669350/disable-jlist-cell-selection-property
     private static class NoSelectionModel extends DefaultListSelectionModel {
@@ -78,6 +87,5 @@ public class OrderPanel extends JPanel {
         @Override
         public void setSelectionInterval(final int index0, final int index1) { }
     }
-
 
 }
