@@ -48,8 +48,18 @@ public class OrderPanel extends JPanel {
         centerPane.add(listPane);
         centerPane.add(Box.createVerticalGlue());
 
+        // Create and add Cook order button
+        JPanel buttonPane = new JPanel();
+        buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.X_AXIS));
+        buttonPane.setOpaque(false);
+        buttonPane.setPreferredSize(new Dimension(100, 100));
+        JButton cookOrderBtn = new JButton("Cook Next Order");
+        buttonPane.add(Box.createHorizontalGlue());
+        buttonPane.add(cookOrderBtn);
+
         this.add(titleWrapper, BorderLayout.NORTH);
         this.add(centerPane, BorderLayout.CENTER);
+        this.add(buttonPane, BorderLayout.SOUTH);
     }
 
     // Was Retrieved from stackoverflow at:
