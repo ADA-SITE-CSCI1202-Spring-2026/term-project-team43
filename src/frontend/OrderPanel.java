@@ -29,7 +29,7 @@ public class OrderPanel extends JPanel {
         JList<Order> visualList = new JList<>(model);
         visualList.setLayoutOrientation(JList.VERTICAL);
         visualList.setFixedCellHeight(25);
-        visualList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        visualList.setSelectionModel(new NoSelectionModel());
         visualList.setBackground(new Color(0xAEEEEE));
 
         JScrollPane scrollPane = new JScrollPane(visualList);
@@ -51,4 +51,23 @@ public class OrderPanel extends JPanel {
         this.add(titleWrapper, BorderLayout.NORTH);
         this.add(centerPane, BorderLayout.CENTER);
     }
+
+    // Was Retrieved from stackoverflow at:
+    // https://stackoverflow.com/questions/31669350/disable-jlist-cell-selection-property
+    private static class NoSelectionModel extends DefaultListSelectionModel {
+
+        @Override
+        public void setAnchorSelectionIndex(final int anchorIndex) {}
+
+        @Override
+        public void setLeadAnchorNotificationEnabled(final boolean flag) {}
+
+        @Override
+        public void setLeadSelectionIndex(final int leadIndex) {}
+
+        @Override
+        public void setSelectionInterval(final int index0, final int index1) { }
+    }
+
+
 }
