@@ -3,6 +3,7 @@ package frontend;
 import backend.pantry.Ingredient;
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class RestockPanel extends JPanel {
 
@@ -54,5 +55,9 @@ public class RestockPanel extends JPanel {
 
         this.add(centerPane, BorderLayout.CENTER);
         this.add(titleWrapper, BorderLayout.NORTH);
+    }
+
+    public static void addAllIngredients(ArrayList<Ingredient> ingredients){
+        ingredientData.addAll(ingredients);
     }
 }
