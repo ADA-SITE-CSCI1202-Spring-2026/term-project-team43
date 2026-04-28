@@ -92,8 +92,18 @@ public class RestockPanel extends JPanel {
         centerPane.add(Box.createVerticalGlue());
         centerPane.add(Box.createVerticalGlue());
 
-        this.add(centerPane, BorderLayout.CENTER);
+        // Add Buy Ingredient button
+        JPanel buttonPane = new JPanel();
+        buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.X_AXIS));
+        buttonPane.setOpaque(false);
+        buttonPane.setPreferredSize(new Dimension(100, 100));
+        JButton cookOrderBtn = new JButton("Buy Ingredient");
+        buttonPane.add(Box.createHorizontalGlue());
+        buttonPane.add(cookOrderBtn);
+
         this.add(titleWrapper, BorderLayout.NORTH);
+        this.add(centerPane, BorderLayout.CENTER);
+        this.add(buttonPane, BorderLayout.SOUTH);
     }
 
     public static void addAllIngredients(ArrayList<Ingredient> ingredients){
