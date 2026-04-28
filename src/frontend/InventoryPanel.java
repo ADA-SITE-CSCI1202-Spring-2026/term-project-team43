@@ -7,10 +7,12 @@ public class InventoryPanel extends JPanel {
     private final static JTextArea inventoryInfo = new JTextArea(5, 25);
 
     public InventoryPanel(){
+        int PINK_BACKGROUND = 0xF6B1B0;
+        int CYAN_BACKGROUND = 0xAEEEEE;
         int TITLE_FONT_SIZE = 30;
         int TEXT_AREA_FONT_SIZE = 15;
 
-        this.setBackground(new Color(0xF6B1B0));
+        this.setBackground(new Color(PINK_BACKGROUND));
         this.setLayout(new BorderLayout());
         JLabel title = new JLabel("Inventory");
         title.setFont(new Font(Font.SANS_SERIF, Font.BOLD, TITLE_FONT_SIZE));
@@ -28,7 +30,7 @@ public class InventoryPanel extends JPanel {
         inventoryInfo.setEditable(false);
         inventoryInfo.setLineWrap(true);
         inventoryInfo.setWrapStyleWord(true);
-        inventoryInfo.setBackground(new Color(0xAEEEEE));
+        inventoryInfo.setBackground(new Color(CYAN_BACKGROUND));
 
         JScrollPane inventoryScrollPane = new JScrollPane(inventoryInfo);
         inventoryScrollPane.setVerticalScrollBarPolicy(

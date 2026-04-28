@@ -10,8 +10,10 @@ public class OrderPanel extends JPanel {
 
     public OrderPanel(){
         int TITLE_FONT_SIZE = 30;
+        int PINK_BACKGROUND = 0xF6B1B0;
+        int CYAN_BACKGROUND = 0xAEEEEE;
 
-        this.setBackground(new Color(0xF6B1B0));
+        this.setBackground(new Color(PINK_BACKGROUND));
         this.setLayout(new BorderLayout());
         JLabel title = new JLabel("Orders");
         title.setFont(new Font(Font.SANS_SERIF, Font.BOLD, TITLE_FONT_SIZE));
@@ -31,7 +33,7 @@ public class OrderPanel extends JPanel {
         visualList.setLayoutOrientation(JList.VERTICAL);
         visualList.setFixedCellHeight(25);
         visualList.setSelectionModel(new NoSelectionModel());
-        visualList.setBackground(new Color(0xAEEEEE));
+        visualList.setBackground(new Color(CYAN_BACKGROUND));
 
         JScrollPane scrollPane = new JScrollPane(visualList);
         scrollPane.setPreferredSize(new Dimension(300, 180));
