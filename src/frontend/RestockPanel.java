@@ -48,6 +48,7 @@ public class RestockPanel extends JPanel {
         ingredientList.setBackground(new Color(CYAN_BACKGROUND));
         ingredientList.setPreferredSize(new Dimension(300, 50));
         ingredientList.setMaximumSize(new Dimension(350, 80));
+        ingredientList.setSelectedIndex(0);
 
         // Dropdown List container
         JPanel dropdownPane = new JPanel();
