@@ -9,9 +9,9 @@ public class OrderPanel extends JPanel {
     private static final DefaultListModel<Order> model = new DefaultListModel<>();
 
     public OrderPanel(){
-        int TITLE_FONT_SIZE = 30;
         int PINK_BACKGROUND = 0xF6B1B0;
         int CYAN_BACKGROUND = 0xAEEEEE;
+        int TITLE_FONT_SIZE = 30;
 
         this.setBackground(new Color(PINK_BACKGROUND));
         this.setLayout(new BorderLayout());
@@ -34,10 +34,11 @@ public class OrderPanel extends JPanel {
         visualList.setFixedCellHeight(25);
         visualList.setSelectionModel(new NoSelectionModel());
         visualList.setBackground(new Color(CYAN_BACKGROUND));
+        visualList.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 15));
 
         JScrollPane scrollPane = new JScrollPane(visualList);
-        scrollPane.setPreferredSize(new Dimension(300, 180));
-        scrollPane.setMaximumSize(new Dimension(350, 200));
+        scrollPane.setPreferredSize(new Dimension(400, 250));
+        scrollPane.setMaximumSize(new Dimension(400, 270));
         scrollPane.setBorder(BorderFactory.createLineBorder(Color.black, 5));
 
         // List container
@@ -65,6 +66,9 @@ public class OrderPanel extends JPanel {
         this.add(buttonPane, BorderLayout.SOUTH);
     }
 
+
+    /* Add orders to the list displayed in Order Panel
+     * */
     public static void addOrder(Order order){
         model.addElement(order);
     }
@@ -72,6 +76,10 @@ public class OrderPanel extends JPanel {
     public static void addOrders(Queue<Order> orders){
         model.addAll(orders);
     }
+
+
+
+
 
     // Was Retrieved from stackoverflow at:
     // https://stackoverflow.com/questions/31669350/disable-jlist-cell-selection-property
@@ -89,5 +97,6 @@ public class OrderPanel extends JPanel {
         @Override
         public void setSelectionInterval(final int index0, final int index1) { }
     }
+
 
 }
