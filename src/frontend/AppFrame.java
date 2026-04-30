@@ -6,9 +6,17 @@ import java.awt.*;
 public class AppFrame extends JFrame {
 
     public AppFrame(){
+        // Panel constants
+        JPanel ORDER_PANEL = new OrderPanel();
+        JPanel INVENTORY_PANEL = new InventoryPanel();
+        JPanel RESTOCK_PANEL = new RestockPanel();
+        JPanel SYSTEM_LOG_PANEL = new SystemLogPanel();
+        // Button constants
         int SIDEBAR_BUTTON_WIDTH = 100;
         int SIDEBAR_BUTTON_HEIGHT = 30;
+
         this.setMinimumSize(new Dimension(700, 500));
+        this.setMaximumSize(new Dimension(900, 600));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Silicon Spatula");
         this.setLayout(new BorderLayout());
@@ -55,8 +63,30 @@ public class AppFrame extends JFrame {
         sidebar.add(buttons);
         sidebar.add(Box.createVerticalGlue());
 
-        this.add(sidebar, BorderLayout.WEST);
-        this.setVisible(true);
+        // Change main content using card layout
+        JPanel mainContent = new JPanel();
+        CardLayout cardLayout = new CardLayout();
+        mainContent.setLayout(cardLayout);
+        mainContent.add(ORDER_PANEL, "Order Panel");
+        mainContent.add(INVENTORY_PANEL, "Inventory Panel");
+        mainContent.add(RESTOCK_PANEL, "Restock Panel");
+        mainContent.add(SYSTEM_LOG_PANEL, "System Log Panel");
 
+        button1.addActionListener(
+                e -> cardLayout.show(mainContent, "Order Panel")
+        );
+        button2.addActionListener(
+                e -> cardLayout.show(mainContent, "Inventory Panel")
+        );
+        button3.addActionListener(
+                e -> cardLayout.show(mainContent, "Restock Panel")
+        );
+        button4.addActionListener(
+                e -> cardLayout.show(mainContent, "System Log Panel")
+        );
+
+        this.add(sidebar, BorderLayout.WEST);
+        this.add(mainContent, BorderLayout.CENTER);
+        this.setVisible(true);
     }
 }
