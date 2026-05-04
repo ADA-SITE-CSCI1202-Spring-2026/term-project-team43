@@ -1,23 +1,22 @@
 package frontend;
 
+import app.AppManager;
 import javax.swing.*;
 import java.awt.*;
 
 public class AppFrame extends JFrame {
+    public AppFrame(AppManager appManager){
+        // Setting up the panels
+        JPanel ORDER_PANEL = new OrderPanel(appManager);
+        JPanel INVENTORY_PANEL = new InventoryPanel(appManager);
+        JPanel RESTOCK_PANEL = new RestockPanel(appManager);
+        JPanel SYSTEM_LOG_PANEL = new SystemLogPanel(appManager);
 
-    public AppFrame(){
-        // Panel constants
-        JPanel ORDER_PANEL = new OrderPanel();
-        JPanel INVENTORY_PANEL = new InventoryPanel();
-        JPanel RESTOCK_PANEL = new RestockPanel();
-        JPanel SYSTEM_LOG_PANEL = new SystemLogPanel();
-        // Button constants
         int SIDEBAR_BUTTON_WIDTH = 100;
         int SIDEBAR_BUTTON_HEIGHT = 30;
-
         this.setMinimumSize(new Dimension(700, 500));
         this.setMaximumSize(new Dimension(900, 600));
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setTitle("Silicon Spatula");
         this.setLayout(new BorderLayout());
         // should be visible in windows

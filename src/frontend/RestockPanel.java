@@ -1,7 +1,7 @@
 package frontend;
 
+import app.AppManager;
 import backend.pantry.Ingredient;
-
 import javax.swing.*;
 import javax.swing.text.NumberFormatter;
 import java.awt.*;
@@ -12,7 +12,7 @@ public class RestockPanel extends JPanel {
     private final static DefaultComboBoxModel<Ingredient> ingredientData =
             new DefaultComboBoxModel<>();
 
-    public RestockPanel(){
+    public RestockPanel(AppManager appManager){
         int TITLE_FONT_SIZE = 30;
         int PINK_BACKGROUND = 0xF6B1B0;
         int CYAN_BACKGROUND = 0xAEEEEE;
@@ -32,7 +32,6 @@ public class RestockPanel extends JPanel {
         titleWrapper.add(title);
         title.setAlignmentX(JLabel.CENTER);
 
-
         // Layout, for the BorderLayout.Center
         JPanel centerPane = new JPanel();
         centerPane.setLayout(new BoxLayout(centerPane, BoxLayout.Y_AXIS));
@@ -48,7 +47,9 @@ public class RestockPanel extends JPanel {
         ingredientList.setBackground(new Color(CYAN_BACKGROUND));
         ingredientList.setPreferredSize(new Dimension(300, 50));
         ingredientList.setMaximumSize(new Dimension(350, 80));
-        ingredientList.setSelectedIndex(0);
+        if (ingredientData.getSize() > 0) {
+            ingredientList.setSelectedIndex(0);
+        }
 
         // Dropdown List container
         JPanel dropdownPane = new JPanel();
@@ -78,7 +79,6 @@ public class RestockPanel extends JPanel {
         NumberFormatter formatter = (NumberFormatter) editor.getTextField().getFormatter();
         formatter.setAllowsInvalid(false);
 
-
         // Spinner container
         JPanel spinnerPane = new JPanel();
         spinnerPane.setOpaque(false);
@@ -98,9 +98,22 @@ public class RestockPanel extends JPanel {
         buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.X_AXIS));
         buttonPane.setOpaque(false);
         buttonPane.setPreferredSize(new Dimension(100, 100));
-        JButton cookOrderBtn = new JButton("Buy Ingredient");
+        JButton buyIngredientBtn = new JButton("Buy Ingredient");
         buttonPane.add(Box.createHorizontalGlue());
-        buttonPane.add(cookOrderBtn);
+        buttonPane.add(buyIngredientBtn);
+
+        buyIngredientBtn.addActionListener(
+                e -> {
+                    Ingredient ingredient = (Ingredient) ingredientData.getSelectedItem();
+                    int count = (int) ingredientCount.getValue();
+                    appManager.updateBuyIngredientStatus(ingredient, count);
+                    if (appManager.canBuyIngredient(ingredient, count)){
+                        appManager.buyIngredient(ingredient, count);
+                        appManager.updateBalanceStatus();
+                        appManager.updateInventoryInfo();
+                    }
+                }
+        );
 
         this.add(titleWrapper, BorderLayout.NORTH);
         this.add(centerPane, BorderLayout.CENTER);

@@ -1,12 +1,13 @@
 package frontend;
 
+import app.AppManager;
 import javax.swing.*;
 import java.awt.*;
 
 public class SystemLogPanel extends JPanel {
     private static final JTextArea systemLog = new JTextArea();
 
-    public SystemLogPanel(){
+    public SystemLogPanel(AppManager appManager){
         int TITLE_FONT_SIZE = 30;
         int PINK_BACKGROUND = 0xF6B1B0;
         int CYAN_BACKGROUND = 0xAEEEEE;

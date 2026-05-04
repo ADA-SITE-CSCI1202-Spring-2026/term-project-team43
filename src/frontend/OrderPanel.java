@@ -1,5 +1,6 @@
 package frontend;
 
+import app.AppManager;
 import backend.order.Order;
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +9,7 @@ import java.util.Queue;
 public class OrderPanel extends JPanel {
     private static final DefaultListModel<Order> model = new DefaultListModel<>();
 
-    public OrderPanel(){
+    public OrderPanel(AppManager appManager){
         int PINK_BACKGROUND = 0xF6B1B0;
         int CYAN_BACKGROUND = 0xAEEEEE;
         int TITLE_FONT_SIZE = 30;
@@ -61,11 +62,21 @@ public class OrderPanel extends JPanel {
         buttonPane.add(Box.createHorizontalGlue());
         buttonPane.add(cookOrderBtn);
 
+        cookOrderBtn.addActionListener(
+                e -> {
+                    appManager.updateOrderStatus();
+                    if (appManager.canCookOrder()){
+                        appManager.cookOrder();
+                        model.remove(0);
+                        appManager.updateInventoryInfo();
+                    }
+                }
+        );
+
         this.add(titleWrapper, BorderLayout.NORTH);
         this.add(centerPane, BorderLayout.CENTER);
         this.add(buttonPane, BorderLayout.SOUTH);
     }
-
 
     /* Add orders to the list displayed in Order Panel
      * */
@@ -76,10 +87,6 @@ public class OrderPanel extends JPanel {
     public static void addOrders(Queue<Order> orders){
         model.addAll(orders);
     }
-
-
-
-
 
     // Was Retrieved from stackoverflow at:
     // https://stackoverflow.com/questions/31669350/disable-jlist-cell-selection-property
