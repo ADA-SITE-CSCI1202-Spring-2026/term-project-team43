@@ -62,6 +62,25 @@ public class Order {
         return totalPrice;
     }
 
+    /*
+     * Return a formatted string representation of order. This will be used in
+     * writing the orders to csv file. Note the null values will be written as
+     * null string. The format is: HootFood,Beverage
+     * */
+    public String toCsv(){
+        String res;
+        if (hotFood != null && beverage != null){
+            res = hotFood.getName() + "," + beverage.getName();
+        }
+        else if (hotFood != null){
+            res = hotFood.getName() + "," + "null";
+        }
+        else {
+            res = "null" + "," + beverage.getName();
+        }
+        return res;
+    }
+
     @Override
     public String toString(){
         String res;
